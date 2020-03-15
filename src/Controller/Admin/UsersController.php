@@ -12,6 +12,23 @@ use App\Controller\Admin\AppController;
  */
 class UsersController extends AppController
 {
+    public function login()
+    {
+        if($this->request->is('post')){
+            $user = $this->Auth->identify();
+            
+            if($user){
+                $this->Auth->setUser($user);
+                return $this->redirect(['controller'=>'Users','action'=>'index']);
+            }else {
+                $this->Flash->error("Incorrect username or password !");
+            }
+        }
+    }
+
+    public function logout(){
+        return $this->redirect($this->Auth->logout());
+    }
     /**
      * Index method
      *
@@ -19,8 +36,14 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
-
+        $key = $this->request->getQuery('key');
+        if($key){
+            $query = $this->Users->find('all')
+                                 ->where(['Or'=>['username like'=>'%'.$key.'%','email like'=>'%'.$key.'%']]);
+        }else{
+            $query = $this->Users;
+        }
+        $users = $this->paginate($query);
         $this->set(compact('users'));
     }
 
