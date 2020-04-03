@@ -23,6 +23,7 @@ use Cake\Http\BaseApplication;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
 
 /**
  * Application setup class.
@@ -65,6 +66,18 @@ class Application extends BaseApplication
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
+        // $csrf = new CsrfProtectionMiddleware();
+
+        // // Token check will be skipped when callback returns `true`.
+        // $csrf->whitelistCallback(function ($request) {
+        //         // Skip token check for API URLs.
+        //     if ($request->getParam('prefix') === 'Admin') {
+        //             return true;
+        //     }
+        // });
+
+            // Ensure routing middleware is added to the queue before CSRF protection middleware.
+        
         $middlewareQueue
             // Catch any exceptions in the lower layers,
             // and make an error page/response
@@ -74,6 +87,7 @@ class Application extends BaseApplication
             ->add(new AssetMiddleware([
                 'cacheTime' => Configure::read('Asset.cacheTime'),
             ]))
+            // ->add($csrf)
 
             // Add routing middleware.
             // If you have a large number of routes connected, turning on routes
