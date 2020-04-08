@@ -19,6 +19,13 @@ class UsersController extends AppController
             
             if($user){
                 $this->Auth->setUser($user);
+                
+                if($user['status'] == 0)
+                {
+                    $this->Flash->error("You have not access permission !");
+                    return $this->redirect(['controller' => 'Users', 'action' => 'logout']);
+                }
+
                 return $this->redirect(['controller'=>'Users','action'=>'index']);
             }else {
                 $this->Flash->error("Incorrect username or password !");
@@ -109,11 +116,36 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => [],
-        ]);
+        $user = $this->Users->get($id);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            if (!$user->getErrors) {
+                $image = $this->request->getData('change_image');
+  
+                $name  = $image->getClientFilename();
+                
+                if ($name){
+                    if (!is_dir(WWW_ROOT . 'img' . DS . 'user-img'))
+                        mkdir(WWW_ROOT . 'img' . DS . 'user-img', 0775);
+
+                    $targetPath = WWW_ROOT . 'img' . DS . 'user-img' . DS . $name;
+
+
+                    $image->moveTo($targetPath);
+
+                    $imgpath = WWW_ROOT . 'img' . DS . $user->image;
+                    if (file_exists($imgpath)) {
+                        unlink($imgpath);
+                    }
+                    
+                    $user->image = 'user-img/' . $name;
+                }
+
+                
+            }
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -161,6 +193,21 @@ class UsersController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    public function userStatus($id=null,$status)
+    {
+        $this->request->allowMethod(['post']);
+        $user = $this->Users->get($id);
+        
+        if($status == 1 )
+            $user->status = 0;
+        else
+            $user->status = 1;
+        
+        if($this->Users->save($user))
+        {
+            $this->Flash->success(__('The users status has changed.'));
+        }
+        return $this->redirect(['action' => 'index']);
+    }
 
-    
 }
