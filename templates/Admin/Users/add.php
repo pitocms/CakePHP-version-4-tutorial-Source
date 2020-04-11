@@ -20,6 +20,9 @@
                     echo $this->Form->control('username');
                     echo $this->Form->control('email');
                     echo $this->Form->control('password');
+                    
+                    echo $this->Form->control('profile.mobile');
+
                     echo $this->Form->control('image_file',['type'=>'file']);
                 ?>
             </fieldset>
