@@ -50,7 +50,9 @@ class UsersController extends AppController
         }else{
             $query = $this->Users;
         }
-        $users = $this->paginate($query);
+
+        $users = $this->paginate($query,['contain'=>['Profiles']]);
+        
         $this->set(compact('users'));
     }
 

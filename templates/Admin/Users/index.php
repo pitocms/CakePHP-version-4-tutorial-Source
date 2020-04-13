@@ -26,7 +26,7 @@
                     <th><?= $this->Paginator->sort('username') ?></th>
                     <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('image') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th>Mobile</th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
 
                     <th><?= $this->Paginator->sort('Change Status') ?></th>
@@ -45,15 +45,14 @@
                         <td><?= h($user->username) ?></td>
                         <td><?= h($user->email) ?></td>
                         <td><?= @$this->Html->image($user->image, ['style' => 'max-width:50px;height:50px;border-radius:50%;']) ?></td>
-
-                        <td><?= h($user->created) ?></td>
+                        <td><?= @h($user->profile->mobile) ?></td>
                         <td><?= h($user->modified) ?></td>
 
                         <td>
 
-                            <?php if($user->status == 1): ?>
+                            <?php if ($user->status == 1) : ?>
                                 <?= $this->Form->postLink(__('Inactive'), ['action' => 'userStatus', $user->id, $user->status], ['block' => true, 'confirm' => __('Are you sure you want to inactive # {0}?', $user->id)]) ?>
-                            <?php else: ?> 
+                            <?php else : ?>
                                 <?= $this->Form->postLink(__('Active'), ['action' => 'userStatus', $user->id, $user->status], ['block' => true, 'confirm' => __('Are you sure you want to active # {0}?', $user->id)]) ?>
                             <?php endif; ?>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2020 at 02:14 PM
+-- Generation Time: Apr 13, 2020 at 04:42 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.2.23
 
@@ -198,7 +198,37 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `user_id`, `mobile`, `created`, `modified`) VALUES
-(1, 6, 121212, '2020-04-10 07:35:31', '2020-04-10 07:35:31');
+(1, 6, 121212, '2020-04-10 07:35:31', '2020-04-10 07:35:31'),
+(2, 1, 181111, '2020-04-12 13:04:43', '2020-04-12 13:04:43'),
+(3, 2, 112121212, '2020-04-12 13:41:24', '2020-04-12 13:41:24'),
+(4, 3, 23232323, '2020-04-12 13:41:34', '2020-04-12 13:41:34'),
+(5, 7, 32323, '2020-04-12 15:00:26', '2020-04-12 15:00:26'),
+(6, 8, 1212, '2020-04-12 15:09:22', '2020-04-12 15:09:22'),
+(7, 9, 12119, '2020-04-12 15:10:47', '2020-04-12 15:10:47'),
+(8, 10, 121212, '2020-04-12 15:12:19', '2020-04-12 15:12:19'),
+(9, 11, 121212, '2020-04-13 14:33:23', '2020-04-13 14:33:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `skills`
+--
+
+CREATE TABLE `skills` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `skills`
+--
+
+INSERT INTO `skills` (`id`, `user_id`, `name`, `created`, `modified`) VALUES
+(1, 11, 'php', '2020-04-13 14:33:23', '2020-04-13 14:33:23'),
+(2, 11, 'javascript', '2020-04-13 14:33:23', '2020-04-13 14:33:23');
 
 -- --------------------------------------------------------
 
@@ -275,10 +305,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `amount`, `password`, `image`, `status`, `created`, `modified`) VALUES
-(1, 'pitocmsssss', 'demo123@admin.com', 0, '$2y$10$kcprj5VbJlJgcJXx3U5SJuFLmnlk5kNJKrpScZ8HQO6H7O9WgEHpi', 'user-img/template.jpg', 0, '2020-04-01 07:14:22', '2020-04-08 15:46:44'),
-(2, 'test232', 'test@test.com', 0, '$2y$10$jQaO3/f3tpSjbpduPmZ59O99knmqxB8TtQzlfYPfc11AV7Cq/K5S.', 'user-img/8709387_orig.jpg', 1, '2020-04-01 07:14:42', '2020-04-08 15:48:56'),
-(3, 'pitocms', 'pitocms@yahoo.com', 0, '$2y$10$yIXWSpsXIOeFoqomVHaggesm6rpUDFVTv2375uSHRKLQJVuUgf7X.', 'user-img/p120274.jpg', 1, '2020-04-03 15:15:44', '2020-04-08 15:34:15'),
-(6, 'jone', 'jone@test.com', 0, '$2y$10$VYFJspmwfYxKJdxXNLt3q.6AE/y6lDgb/ToErsQgd5qOKNcxOFKOm', 'user-img/8709387_orig.jpg', 1, '2020-04-10 07:35:31', '2020-04-10 07:35:31');
+(1, 'pitocmsssss', 'demo123@admin.com', 0, '$2y$10$kcprj5VbJlJgcJXx3U5SJuFLmnlk5kNJKrpScZ8HQO6H7O9WgEHpi', 'user-img/template.jpg', 0, '2020-04-01 07:14:22', '2020-04-12 13:04:43'),
+(2, 'test232', 'test@test.com', 0, '$2y$10$jQaO3/f3tpSjbpduPmZ59O99knmqxB8TtQzlfYPfc11AV7Cq/K5S.', 'user-img/8709387_orig.jpg', 1, '2020-04-01 07:14:42', '2020-04-12 13:41:24'),
+(3, 'pitocms', 'pitocms@yahoo.com', 0, '$2y$10$yIXWSpsXIOeFoqomVHaggesm6rpUDFVTv2375uSHRKLQJVuUgf7X.', 'user-img/p120274.jpg', 1, '2020-04-03 15:15:44', '2020-04-12 13:41:34'),
+(6, 'jone', 'jone@test.com', 0, '$2y$10$VYFJspmwfYxKJdxXNLt3q.6AE/y6lDgb/ToErsQgd5qOKNcxOFKOm', 'user-img/8709387_orig.jpg', 1, '2020-04-10 07:35:31', '2020-04-10 07:35:31'),
+(11, 'jone2', 'jone2@test.com', 0, '$2y$10$Gld7CN3KF4LxvizhmQwo/uVgYyU.V2bZDlhIgscoXCZ72dIUQVmzS', 'user-img/8709387_orig.jpg', 1, '2020-04-13 14:33:23', '2020-04-13 14:33:23');
 
 --
 -- Indexes for dumped tables
@@ -330,6 +361,12 @@ ALTER TABLE `products`
 -- Indexes for table `profiles`
 --
 ALTER TABLE `profiles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `skills`
+--
+ALTER TABLE `skills`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -394,7 +431,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `skills`
+--
+ALTER TABLE `skills`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `spouses`
@@ -412,7 +455,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -26,6 +26,7 @@
                     echo $this->Form->control('email');
                     echo $this->Form->control('change_image',['type'=>'file']);
                     // debug($user->image);
+                    echo $this->Form->control('profile.mobile');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
