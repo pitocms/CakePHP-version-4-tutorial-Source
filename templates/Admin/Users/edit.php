@@ -27,6 +27,9 @@
                     echo $this->Form->control('change_image',['type'=>'file']);
                     // debug($user->image);
                     echo $this->Form->control('profile.mobile');
+
+                    echo $this->Form->control('skills.0.name');
+                    echo $this->Form->control('skills.1.name');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

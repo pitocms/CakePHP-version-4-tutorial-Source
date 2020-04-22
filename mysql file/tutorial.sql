@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2020 at 04:42 PM
+-- Generation Time: Apr 22, 2020 at 06:22 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.2.23
 
@@ -111,6 +111,29 @@ INSERT INTO `friends` (`id`, `name`, `amount`, `city`, `created`) VALUES
 (3, 'Kamal', 100, 'Mosko', '2019-11-12 00:00:00'),
 (4, 'Satis', 20, 'KolKata', '2019-11-12 00:00:00'),
 (5, 'Lili', 223, 'Dhaka', '2019-11-11 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menus`
+--
+
+CREATE TABLE `menus` (
+  `id` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `status` tinyint(2) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `menus`
+--
+
+INSERT INTO `menus` (`id`, `name`, `status`, `created`, `modified`) VALUES
+(1, 'PHP', 1, '2020-04-18 14:24:32', '2020-04-18 14:24:32'),
+(2, 'JavaScript', 1, '2020-04-18 14:25:27', '2020-04-18 14:25:27'),
+(3, 'Java', 1, '2020-04-18 14:46:42', '2020-04-18 14:46:42');
 
 -- --------------------------------------------------------
 
@@ -228,7 +251,12 @@ CREATE TABLE `skills` (
 
 INSERT INTO `skills` (`id`, `user_id`, `name`, `created`, `modified`) VALUES
 (1, 11, 'php', '2020-04-13 14:33:23', '2020-04-13 14:33:23'),
-(2, 11, 'javascript', '2020-04-13 14:33:23', '2020-04-13 14:33:23');
+(2, 11, 'javascript', '2020-04-13 14:33:23', '2020-04-13 14:33:23'),
+(3, 6, 'Java', '2020-04-16 15:47:00', '2020-04-16 15:47:00'),
+(4, 6, 'Python', '2020-04-16 15:47:00', '2020-04-16 15:47:00'),
+(5, 6, 'c++', '2020-04-16 15:47:00', '2020-04-16 15:47:00'),
+(6, 1, 'c', '2020-04-16 15:47:37', '2020-04-16 15:47:37'),
+(7, 1, 'c++', '2020-04-16 15:47:37', '2020-04-16 15:47:37');
 
 -- --------------------------------------------------------
 
@@ -285,6 +313,32 @@ INSERT INTO `students` (`id`, `name`, `age`, `country`, `created_at`, `updated_a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `submenus`
+--
+
+CREATE TABLE `submenus` (
+  `id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `submenus`
+--
+
+INSERT INTO `submenus` (`id`, `menu_id`, `name`, `status`, `created`, `modified`) VALUES
+(1, 1, 'CakePHP', 1, '2020-04-18 14:25:41', '2020-04-18 14:25:41'),
+(2, 1, 'Leravel', 1, '2020-04-18 14:25:56', '2020-04-18 14:25:56'),
+(3, 1, 'Yii', 1, '2020-04-18 14:26:04', '2020-04-18 14:26:04'),
+(4, 2, 'NodeJs', 1, '2020-04-18 14:26:14', '2020-04-18 14:26:14'),
+(5, 2, 'React Js', 1, '2020-04-18 14:26:22', '2020-04-18 14:26:22');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -305,10 +359,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `amount`, `password`, `image`, `status`, `created`, `modified`) VALUES
-(1, 'pitocmsssss', 'demo123@admin.com', 0, '$2y$10$kcprj5VbJlJgcJXx3U5SJuFLmnlk5kNJKrpScZ8HQO6H7O9WgEHpi', 'user-img/template.jpg', 0, '2020-04-01 07:14:22', '2020-04-12 13:04:43'),
+(1, 'pitocmsssss', 'demo123@admin.com', 0, '$2y$10$kcprj5VbJlJgcJXx3U5SJuFLmnlk5kNJKrpScZ8HQO6H7O9WgEHpi', 'user-img/template.jpg', 0, '2020-04-01 07:14:22', '2020-04-16 15:47:37'),
 (2, 'test232', 'test@test.com', 0, '$2y$10$jQaO3/f3tpSjbpduPmZ59O99knmqxB8TtQzlfYPfc11AV7Cq/K5S.', 'user-img/8709387_orig.jpg', 1, '2020-04-01 07:14:42', '2020-04-12 13:41:24'),
 (3, 'pitocms', 'pitocms@yahoo.com', 0, '$2y$10$yIXWSpsXIOeFoqomVHaggesm6rpUDFVTv2375uSHRKLQJVuUgf7X.', 'user-img/p120274.jpg', 1, '2020-04-03 15:15:44', '2020-04-12 13:41:34'),
-(6, 'jone', 'jone@test.com', 0, '$2y$10$VYFJspmwfYxKJdxXNLt3q.6AE/y6lDgb/ToErsQgd5qOKNcxOFKOm', 'user-img/8709387_orig.jpg', 1, '2020-04-10 07:35:31', '2020-04-10 07:35:31'),
+(6, 'jone', 'jone@test.com', 0, '$2y$10$VYFJspmwfYxKJdxXNLt3q.6AE/y6lDgb/ToErsQgd5qOKNcxOFKOm', 'user-img/8709387_orig.jpg', 1, '2020-04-10 07:35:31', '2020-04-16 15:47:00'),
 (11, 'jone2', 'jone2@test.com', 0, '$2y$10$Gld7CN3KF4LxvizhmQwo/uVgYyU.V2bZDlhIgscoXCZ72dIUQVmzS', 'user-img/8709387_orig.jpg', 1, '2020-04-13 14:33:23', '2020-04-13 14:33:23');
 
 --
@@ -337,6 +391,12 @@ ALTER TABLE `football_ragistrations`
 -- Indexes for table `friends`
 --
 ALTER TABLE `friends`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menus`
+--
+ALTER TABLE `menus`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -382,6 +442,12 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `submenus`
+--
+ALTER TABLE `submenus`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -416,6 +482,12 @@ ALTER TABLE `friends`
   MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `picnic_ragistrations`
 --
 ALTER TABLE `picnic_ragistrations`
@@ -431,13 +503,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `spouses`
@@ -450,6 +522,12 @@ ALTER TABLE `spouses`
 --
 ALTER TABLE `students`
   MODIFY `id` mediumint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `submenus`
+--
+ALTER TABLE `submenus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
