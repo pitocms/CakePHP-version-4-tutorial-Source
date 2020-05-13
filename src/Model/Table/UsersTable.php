@@ -40,9 +40,9 @@ class UsersTable extends Table
 
         $this->addBehavior('Timestamp');
         
-        $this->hasOne('Profiles');
+        $this->hasOne('Profiles', ['dependent' => true]);
 
-        $this->hasMany('Skills');
+        $this->hasMany('Skills',['dependent'=>true]);
 
     }
 
