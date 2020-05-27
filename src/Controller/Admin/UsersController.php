@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 use \SplFileObject;
 use App\Controller\Admin\AppController;
+use Cake\Datasource\ConnectionManager;
 /**
  * Users Controller
  *
@@ -43,7 +44,13 @@ class UsersController extends AppController
      */
     public function index()
     {
-        
+        $connection = ConnectionManager::get('default');
+        // debug($connection);
+        $statement = $connection->execute('SELECT count(*) as count from users');
+        // $statement->execute();
+        $userCount = $statement->fetch('assoc');
+        // var_dump($userCount["count"]);
+        // exit;
         $key = $this->request->getQuery('key');
         if($key){
             $query = $this->Users->findByUsernameOrEmail($key,$key);
@@ -53,7 +60,7 @@ class UsersController extends AppController
 
         $users = $this->paginate($query,['contain'=>['Profiles', 'Skills']]);
         
-        $this->set(compact('users'));
+        $this->set(compact('users', 'userCount'));
     }
 
     /**

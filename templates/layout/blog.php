@@ -12,7 +12,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+  
+  <style>
+    .active a {
+      color:brown;
+    }
+  </style>
   <title>Hello, world!</title>
 </head>
 
@@ -30,17 +35,17 @@
   <?php
     $this->Breadcrumbs->setTemplates([
       'wrapper' => '<nav aria-label="breadcrumb"><ol class="breadcrumb" {{attrs}}>{{content}}</ol></nav>',
-      'item' => '<li class="breadcrumb-item" {{attrs}}><a href="{{url}}"{{innerAttrs}}>{{title}}</a></li>{{separator}}',
+      'item' => '<li {{attrs}}><a href="{{url}}"{{innerAttrs}}>{{title}}</a></li>{{separator}}',
     ]);
     echo $this->Breadcrumbs->render();
   ?>
-  <nav aria-label="breadcrumb">
+  <!-- <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Home</a></li>
       <li class="breadcrumb-item"><a href="#">Library</a></li>
       <li class="breadcrumb-item active" aria-current="page">Data</li>
     </ol>
-  </nav>
+  </nav> -->
 
 
   <?= $this->fetch('content'); ?>

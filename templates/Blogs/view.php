@@ -1,7 +1,21 @@
 <?php
     $this->Breadcrumbs->add([
-        ['title' => 'Home', 'url' => ['controller' => 'Blogs', 'action' => 'home']],
-        ['title' => 'View-'.$article->title, 'url' => ['controller' => 'Blogs', 'action' => 'view', $article->id]]
+        [
+            'title' => 'Home', 
+            'url' => ['controller' => 'Blogs', 'action' => 'home'],
+            'options' => ['class'=> 'breadcrumb-item']
+        ],
+        [
+            'title' => 'View-'.$article->title, 
+            'url' => ['controller' => 'Blogs', 'action' => 'view', $article->id],
+            'options' => [
+                'class' => 'breadcrumb-item active',
+                'innerAttrs' => [
+                    'class' => 'test-list-class',
+                    'id' => 'the-products-crumb'
+                ]
+            ]
+        ]
     ]);
 ?>
 

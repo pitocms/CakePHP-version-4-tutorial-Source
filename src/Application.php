@@ -66,7 +66,7 @@ class Application extends BaseApplication
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
-        // $csrf = new CsrfProtectionMiddleware();
+        $csrf = new CsrfProtectionMiddleware();
 
         // // Token check will be skipped when callback returns `true`.
         // $csrf->whitelistCallback(function ($request) {
@@ -87,7 +87,7 @@ class Application extends BaseApplication
             ->add(new AssetMiddleware([
                 'cacheTime' => Configure::read('Asset.cacheTime'),
             ]))
-            // ->add($csrf)
+            ->add($csrf)
 
             // Add routing middleware.
             // If you have a large number of routes connected, turning on routes
